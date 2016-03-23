@@ -3,9 +3,9 @@ var Wunderground = require('wundergroundnode');
 var Service, Characteristic;
 
 var temperatureService;
-var observationtimeService;
-var weatherService;
-var windstringService;
+// var observationtimeService;
+// var weatherService;
+// var windstringService;
 var humidityService;
 
 module.exports = function (homebridge) {
@@ -56,9 +56,9 @@ WUTemphum.prototype = {
 	    });
 	}
 	temperatureService.setCharacteristic(Characteristic.CurrentTemperature, this.temperature);
-    	observationtimeService.setCharacteristic(Characteristic.CurrentObservationtime, this.observationtime);
-    	weatherService.setCharacteristic(Characteristic.CurrentWeather, this.weather);
-    	windstringService.setCharacteristic(Characteristic.CurrentWindstring, this.windstring);
+//    	observationtimeService.setCharacteristic(Characteristic.CurrentObservationtime, this.observationtime);
+//    	weatherService.setCharacteristic(Characteristic.CurrentWeather, this.weather);
+//    	windstringService.setCharacteristic(Characteristic.CurrentWindstring, this.windstring);
     	humidityService.setCharacteristic(Characteristic.CurrentRelativeHumidity, this.humidity);
 	callback(null, this.temperature);
     },
@@ -75,6 +75,7 @@ WUTemphum.prototype = {
                 .setCharacteristic(Characteristic.Manufacturer, "HomeBridge")
                 .setCharacteristic(Characteristic.Model, "Weather Underground")
                 .setCharacteristic(Characteristic.CurrentObservationtime, this.observationtime)
+                .setCharacteristic(Characteristic.CurrentWeather, this.weather)
                 .setCharacteristic(Characteristic.CurrentWindstring, this.windstring)
                 .setCharacteristic(Characteristic.SerialNumber, this.city);
 
