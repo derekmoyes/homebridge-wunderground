@@ -20,6 +20,9 @@ function WUTemphum(log, config) {
     this.name = config['name'];
     this.city = config['city'];
     this.timestampOfLastUpdate = 0;
+    this.observationtime = "now";
+    this.weather = "weather";
+    this.windstring = "wind";
 }
 
 WUTemphum.prototype = {
