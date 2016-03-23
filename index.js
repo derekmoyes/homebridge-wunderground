@@ -24,7 +24,7 @@ function WUTemphum(log, config) {
 
 WUTemphum.prototype = {
 
-    getStateObservationTime: function(callback){    
+    getStateObservationtime: function(callback){    
 	callback(null, this.observationtime);
     },
 
@@ -32,7 +32,7 @@ WUTemphum.prototype = {
 	callback(null, this.weather);
     },
 
-    getStateWindString: function(callback){    
+    getStateWindstring: function(callback){    
 	callback(null, this.windstring);
     },
 
