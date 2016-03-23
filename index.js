@@ -53,9 +53,9 @@ WUTemphum.prototype = {
 	    });
 	}
 	temperatureService.setCharacteristic(Characteristic.CurrentTemperature, this.temperature);
-    	observation_timeService.setCharacteristic(Characteristic.CurrentObservationTime, this.observation_time);
+    	observationtimeService.setCharacteristic(Characteristic.CurrentObservationTime, this.observation_time);
     	weatherService.setCharacteristic(Characteristic.CurrentWeather, this.weather);
-    	wind_stringService.setCharacteristic(Characteristic.CurrentWindString, this.wind_string);
+    	windstringService.setCharacteristic(Characteristic.CurrentWindString, this.wind_string);
     	humidityService.setCharacteristic(Characteristic.CurrentRelativeHumidity, this.humidity);
 	callback(null, this.temperature);
     },
@@ -86,8 +86,8 @@ WUTemphum.prototype = {
                 .getCharacteristic(Characteristic.CurrentTemperature)
                 .setProps({maxValue: 50});
 
-        observation_timeService = new Service.ObservationTimeSensor(this.name);
-        observation_timeService
+        observationtimeService = new Service.ObservationTimeSensor(this.name);
+        observationtimeService
                 .getCharacteristic(Characteristic.CurrentObservationTime)
                 .on('get', this.getStateObservationTime.bind(this));
 
