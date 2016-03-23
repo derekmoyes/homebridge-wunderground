@@ -69,16 +69,6 @@ WUTemphum.prototype = {
     },
 
     getServices: function () {
-        var informationService = new Service.AccessoryInformation();
-
-        informationService
-                .setCharacteristic(Characteristic.Manufacturer, "HomeBridge")
-                .setCharacteristic(Characteristic.Model, "Weather Underground")
-                .setCharacteristic(Characteristic.CurrentObservationtime, this.observationtime)
-                .setCharacteristic(Characteristic.CurrentWeather, this.weather)
-                .setCharacteristic(Characteristic.CurrentWindstring, this.windstring)
-                .setCharacteristic(Characteristic.SerialNumber, this.city);
-
         temperatureService = new Service.TemperatureSensor(this.name);
         temperatureService
                 .getCharacteristic(Characteristic.CurrentTemperature)
@@ -111,6 +101,15 @@ WUTemphum.prototype = {
         humidityService
                 .getCharacteristic(Characteristic.CurrentRelativeHumidity)
                 .on('get', this.getStateHumidity.bind(this));
+
+        var informationService = new Service.AccessoryInformation();
+        informationService
+                .setCharacteristic(Characteristic.Manufacturer, "HomeBridge")
+                .setCharacteristic(Characteristic.Model, "Weather Underground")
+                .setCharacteristic(Characteristic.CurrentObservationtime, this.observationtime)
+                .setCharacteristic(Characteristic.CurrentWeather, this.weather)
+                .setCharacteristic(Characteristic.CurrentWindstring, this.windstring)
+                .setCharacteristic(Characteristic.SerialNumber, this.city);
 
         return [informationService, temperatureService, humidityService];
 
