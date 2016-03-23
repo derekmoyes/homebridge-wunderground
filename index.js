@@ -49,16 +49,16 @@ WUTemphum.prototype = {
 		that.timestampOfLastUpdate = Date.now() / 1000 | 0;
 		that.log('Successfully fetched weather data from wunderground.com');
     		that.temperature = response['current_observation']['temp_c'];
-    		that.observation_time = response['current_observation']['observation_time'];
+    		that.observationtime = response['current_observation']['observation_time'];
     		that.weather = response['current_observation']['weather'];
-    		that.wind_string = response['current_observation']['wind_string'];
+    		that.windstring = response['current_observation']['wind_string'];
    		that.humidity = parseInt(response['current_observation']['relative_humidity'].substr(0, response['current_observation']['relative_humidity'].length-1));
 	    });
 	}
 	temperatureService.setCharacteristic(Characteristic.CurrentTemperature, this.temperature);
-    	observationtimeService.setCharacteristic(Characteristic.CurrentObservationTime, this.observationtime);
+    	observationtimeService.setCharacteristic(Characteristic.CurrentObservationtime, this.observationtime);
     	weatherService.setCharacteristic(Characteristic.CurrentWeather, this.weather);
-    	windstringService.setCharacteristic(Characteristic.CurrentWindString, this.windstring);
+    	windstringService.setCharacteristic(Characteristic.CurrentWindstring, this.windstring);
     	humidityService.setCharacteristic(Characteristic.CurrentRelativeHumidity, this.humidity);
 	callback(null, this.temperature);
     },
@@ -91,7 +91,7 @@ WUTemphum.prototype = {
 
         observationtimeService = new Service.ObservationtimeSensor(this.name);
         observationtimeService
-                .getCharacteristic(Characteristic.CurrentObservationTime)
+                .getCharacteristic(Characteristic.CurrentObservationtime)
                 .on('get', this.getStateObservationtime.bind(this));
 
         weatherService = new Service.WeatherSensor(this.name);
@@ -101,7 +101,7 @@ WUTemphum.prototype = {
 
         windstringService = new Service.WindstringSensor(this.name);
         windstringService
-                .getCharacteristic(Characteristic.CurrentWindString)
+                .getCharacteristic(Characteristic.CurrentWindstring)
                 .on('get', this.getStateWindstring.bind(this));
 
         humidityService = new Service.HumiditySensor(this.name);
