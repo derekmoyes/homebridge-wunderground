@@ -86,20 +86,20 @@ WUTemphum.prototype = {
                 .getCharacteristic(Characteristic.CurrentTemperature)
                 .setProps({maxValue: 50});
 
-        observationtimeService = new Service.ObservationTimeSensor(this.name);
+        observationtimeService = new Service.ObservationtimeSensor(this.name);
         observationtimeService
                 .getCharacteristic(Characteristic.CurrentObservationTime)
-                .on('get', this.getStateObservationTime.bind(this));
+                .on('get', this.getStateObservationtime.bind(this));
 
         weatherService = new Service.WeatherSensor(this.name);
         weatherService
                 .getCharacteristic(Characteristic.CurrentWeather)
                 .on('get', this.getStateWeather.bind(this));
 
-        windstringService = new Service.WindStringSensor(this.name);
+        windstringService = new Service.WindstringSensor(this.name);
         windstringService
                 .getCharacteristic(Characteristic.CurrentWindString)
-                .on('get', this.getStateWindString.bind(this));
+                .on('get', this.getStateWindstring.bind(this));
 
         humidityService = new Service.HumiditySensor(this.name);
         humidityService
