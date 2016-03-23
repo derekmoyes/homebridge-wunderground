@@ -3,6 +3,9 @@ var Wunderground = require('wundergroundnode');
 var Service, Characteristic;
 
 var temperatureService;
+var observationtimeService;
+var weatherService;
+var windstringService;
 var humidityService;
 
 module.exports = function (homebridge) {
