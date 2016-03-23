@@ -109,9 +109,7 @@ WUTemphum.prototype = {
         informationService
                 .setCharacteristic(Characteristic.Manufacturer, "HomeBridge")
                 .setCharacteristic(Characteristic.Model, "Weather Underground")
-                .setCharacteristic(Characteristic.CurrentObservationtime, this.observationtime)
-                .setCharacteristic(Characteristic.CurrentWeather, this.weather)
-                .setCharacteristic(Characteristic.CurrentWindstring, this.windstring)
+                .setCharacteristic(Characteristic.Name, this.observationtime + " " + this.weather + " " + this.windstring)
                 .setCharacteristic(Characteristic.SerialNumber, this.city);
 
         return [informationService, temperatureService, humidityService];
