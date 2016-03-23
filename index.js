@@ -5,7 +5,7 @@ var Service, Characteristic;
 var temperatureService;
 // var observationtimeService;
 // var weatherService;
-var windstringService;
+// var windstringService;
 var humidityService;
 
 module.exports = function (homebridge) {
@@ -32,9 +32,9 @@ WUTemphum.prototype = {
 //	callback(null, this.weather);
 //    },
 
-    getStateWindstring: function(callback){    
-	callback(null, this.windstring);
-    },
+//    getStateWindstring: function(callback){    
+//	callback(null, this.windstring);
+//    },
 
     getStateHumidity: function(callback){    
 	callback(null, this.humidity);
@@ -51,14 +51,14 @@ WUTemphum.prototype = {
     		that.temperature = response['current_observation']['temp_c'];
 //    		that.observationtime = response['current_observation']['observation_time'];
 //    		that.weather = response['current_observation']['weather'];
-    		that.windstring = response['current_observation']['wind_string'];
+//    		that.windstring = response['current_observation']['wind_string'];
    		that.humidity = parseInt(response['current_observation']['relative_humidity'].substr(0, response['current_observation']['relative_humidity'].length-1));
 	    });
 	}
 	temperatureService.setCharacteristic(Characteristic.CurrentTemperature, this.temperature);
 //    	observationtimeService.setCharacteristic(Characteristic.CurrentObservationtime, this.observationtime);
 //    	weatherService.setCharacteristic(Characteristic.CurrentWeather, this.weather);
-    	windstringService.setCharacteristic(Characteristic.CurrentWindstring, this.windstring);
+//    	windstringService.setCharacteristic(Characteristic.CurrentWindstring, this.windstring);
     	humidityService.setCharacteristic(Characteristic.CurrentRelativeHumidity, this.humidity);
 	callback(null, this.temperature);
     },
@@ -99,17 +99,17 @@ WUTemphum.prototype = {
 //                .getCharacteristic(Characteristic.CurrentWeather)
 //                .on('get', this.getStateWeather.bind(this));
 
-        windstringService = new Service.WindstringSensor(this.name);
-        windstringService
-                .getCharacteristic(Characteristic.CurrentWindstring)
-                .on('get', this.getStateWindstring.bind(this));
+//        windstringService = new Service.WindstringSensor(this.name);
+//        windstringService
+//                .getCharacteristic(Characteristic.CurrentWindstring)
+//                .on('get', this.getStateWindstring.bind(this));
 
         humidityService = new Service.HumiditySensor(this.name);
         humidityService
                 .getCharacteristic(Characteristic.CurrentRelativeHumidity)
                 .on('get', this.getStateHumidity.bind(this));
 
-        return [informationService, temperatureService, windstringService, humidityService];
+        return [informationService, temperatureService, humidityService];
 
 	return this.services;
     }
